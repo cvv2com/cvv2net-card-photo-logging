@@ -161,3 +161,92 @@ Veri Formatı: Kayıt edilen veri şu şekilde görünüyor:
 C:\found\20316302.png,"CC, Visa, VISA",aa yw  010010 4050710141969928 |09|2027|209  4050710141969928 |09|2027|209 Country: AR  Brand: visa Type: credit  Check type: pre-authorization Status: succeeded  $ Your balance 196 check
 
 
+cvv2.net card-finder-extractor
+https://github.com/cvv2com/card-finder-extractor
+
+
+
+
+
+
+
+
+
+
+
+BIP39 Seed can find 12 phrases, which makes me a little sad because the life of the wallet owner can be ruined.
+
+
+
+"  breeze eternal fiction  junior ethics lumber  chaos squirrel code jar snack broccoli  deriv"
+
+
+
+C:\found\02c143a0a17d9fc654a5745e351f1005.jpg,CC,12 word Mnemonic  breeze eternal fiction  junior ethics lumber  chaos squirrel code jar snack broccoli  derive Master Private Key  Master Private Key  xprv9s21ZrQH143K4LCv8  FoJWzDPFsMPWXHtzXxzb GVqTYwh4kqCgchKJDMiL Cbv88He5KEQt8LpPcAoc8 8CdxY5MzHm9K4DBRhbA  LB7dcEfPGyw  add Counter generate key generate address  +1  +2  +3  +1  +2  +3  — first privatekey —? first Bitcoin address  ————_>. second private key —® second Bitcoin address  —_ third private key — third Bitcoin address  > L5Y7u....HrfPV7d —— 16UZr.....JQeX —  Llojitgh...Fj|Af¥’m — 1P3D.....BwVG  ——  L5626r....EX3rEZ ——P 1ByJ kgS6  
+
+
+
+
+
+
+
+
+
+It can automatically find Vanilla Gift cards.
+
+Vanilla. gift Enjoy Online Spending Power And Safety  Visit VanillaGift.com for more information about your Vanilla  Gift Virtual Account. Remember, while you can print an image Vanill a  of your Vanilla Gift Virtual Account "card", you may not use  your Virtual account at physical merchant locations. Ce rat lal cout ». The Virtual Account may only be used for online, telephone, and Wey  mail order purchases. 4118-1005 0985 7263 ‘Virtual Account Number 4118100509857263  eres 10/2030  \ DEBIT Expiration Date 10 / 2030 A GIFT. FOR YOU j \AHSA  VALID ONLY IN THESE Cvv 499  
+
+You can easily find your Cc Cvv card information.
+
+
+
+
+
+
+
+
+
+C:\found\20316302.png,"CC, Visa, VISA",aa yw  010010 4050710141969928 |09|2027|209  4050710141969928 |09|2027|209 Country: AR  Brand: visa Type: 
+
+credit  Check type: pre-authorization Status: succeeded  $ Your balance 196 check
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+After finding all the images by searching, it saves them all.
+
+​
+
+​
+
+
+
+
+
+
+
+
+
+
+
+AND MOST IMPORTANTLY, IT IS 100% FREE FOR US. 
+
+
+
+GOOD LUCK!
+
+
+
