@@ -12,7 +12,7 @@ This tool scans images for:
 - 💳 **Credit/Debit Cards** - All major brands, CVV, expiration dates
 - 🔐 **Crypto Wallets** - Seed phrases, private keys, wallet backups
 - 📁 **Sensitive Files** - Database files, email archives, keystores
-- 🌐 **Credentials** - Passwords, API keys, server access
+- 🔑 **Text Credentials** - Passwords, usernames, server information detected in text
 
 **[📖 Full Documentation](README_Version4.md)** | **[💰 Advertising & Sponsorship](ADVERTISING.md)**
 
@@ -94,9 +94,29 @@ We offer sponsorship tiers for businesses and projects:
 
 ---
 
-## 🔒 Security Warning
+## 🔒 Security & Legal Warning
 
-⚠️ **IMPORTANT:** This tool is for scanning YOUR OWN files only. Do not scan others' files without explicit permission. Be aware of data protection laws (GDPR, CCPA, etc.).
+⚠️ **CRITICAL NOTICE:**
+
+This tool is designed **EXCLUSIVELY** for:
+- Scanning YOUR OWN files and images
+- Personal security audits
+- Digital forensics by authorized professionals
+- Educational and research purposes with proper authorization
+
+**PROHIBITED USES:**
+- ❌ Scanning others' files without explicit written permission
+- ❌ Unauthorized access to sensitive information
+- ❌ Any illegal activities including fraud, theft, or data breaches
+- ❌ Violating data protection laws (GDPR, CCPA, etc.)
+
+**IMPORTANT RESPONSIBILITIES:**
+- Secure storage and encryption of all scan results
+- Proper handling and disposal of detected sensitive data
+- Compliance with all applicable laws and regulations
+- Users are solely responsible for legal and ethical use
+
+**The developers and sponsors assume no liability for misuse of this tool.**
 
 ---
 
@@ -129,4 +149,4 @@ If you like the project:
 **🎉 Good Luck! 🍀**
 
 *For Turkish speakers (Türkçe konuşanlar için):*
-*Bu projede ücretli reklam veya sponsorluk fırsatları mevcuttur. Detaylar için [ADVERTISING.md](ADVERTISING.md) dosyasına bakın veya Telegram üzerinden iletişime geçin.*
+*Bu projede ücretli reklam ve sponsorluk fırsatları bulunmaktadır. Detaylı bilgi için [ADVERTISING.md](ADVERTISING.md) dosyasını inceleyebilir veya Telegram üzerinden iletişime geçebilirsiniz.*

@@ -135,6 +135,9 @@ All advertisements must comply with:
 - **Legality** - Must comply with applicable laws and regulations
 - **Ethics** - No scams, illegal services, or harmful content
 - **Transparency** - Clearly marked as sponsored content
+- **Legitimate Use** - Must promote legal and ethical use cases only
+
+**Important:** This tool is designed for legitimate security research, digital forensics, and personal file management only. Advertisers must not promote or encourage any illegal activities, including unauthorized access, data theft, or fraud.
 
 ---
 
@@ -159,13 +162,13 @@ A: We prefer complementary products, but we can discuss case-by-case.
 A: Minimum 1 month, with monthly renewal or longer contracts available.
 
 **Q: Can I cancel anytime?**  
-A: Yes, with 30-day notice. No refunds for partial months.
+A: Yes, with 30-day notice for renewals. The initial month is the minimum commitment. No refunds for partial months.
 
 **Q: Do you offer discounts for longer commitments?**  
-A: Yes! Contact us for annual rates (2 months free with yearly payment).
+A: Yes! Annual subscriptions receive 2 months free (pay for 10 months, get 12 months). This discount applies to any tier you choose.
 
 **Q: Can I try before committing?**  
-A: We offer a 1-week trial at 50% of monthly rate to test effectiveness.
+A: Yes! We offer a 1-week trial at 50% of your chosen tier's monthly rate to test effectiveness.
 
 **Q: What payment methods do you accept?**  
 A: Cryptocurrency (BTC, ETH, USDT), PayPal, and bank transfer.
@@ -174,20 +177,20 @@ A: Cryptocurrency (BTC, ETH, USDT), PayPal, and bank transfer.
 
 ## 📊 Project Statistics
 
-Our users include:
+**Intended Audience:**
 - Security researchers and professionals
 - Digital forensics experts
-- Law enforcement agencies
 - IT security teams
 - Individual researchers
 - Educational institutions
+- Cybersecurity training programs
 
 **GitHub Stats:**
-- Multiple stars and growing
 - Active development
 - Regular updates
 - Global user base
-- Multi-language support
+- Multi-language support (10+ languages)
+- Growing community
 
 ---
 
