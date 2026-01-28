@@ -451,9 +451,11 @@ Contributions are welcome! Follow these steps:
 
 ## 📧 Contact & Links
 
-- **GitHub Profile:** [@cvv2com](https://github.com/cvv2com)
-- **This Project:** [cvv2net-card-photo-logging](https://github.com/cvv2com/cvv2net-card-photo-logging)
-- **Related Project:** [card-finder-extractor](https://github.com/cvv2com/card-finder-extractor)
+GitHub Profile: @cvv2com
+Bu Proje: cvv2net-card-photo-logging
+İlgili Proje: card-finder-extractor
+telegram : https://t.me/Ol00l0
+forum link : https://bhf.pro/threads/629649/page-109#post-7489361
 
 ---
 
