@@ -1,252 +1,391 @@
+# 🔍 CVV2NET Kart Fotoğraf Tarama Aracı
 
-Installation scenario
-******************************
-sudo apt update
-sudo apt install python3 python3-pip tesseract-ocr -y
-pip install --upgrade certifi --break-system-packages
-pip install --user pytesseract pillow
+Bu araç, bilgisayarınızdaki veya herhangi bir klasördeki görselleri tarayarak kredi kartı, banka kartı, seed phrase'ler ve benzeri hassas bilgiler içeren görselleri otomatik olarak tespit eder ve kaydeder.
 
+![ccphotofinder](https://github.com/user-attachments/assets/ca8ec933-7191-46b9-9747-378d4afa213d)
+
+---
+
+## 📋 Özellikler
+
+✅ **Otomatik OCR Analizi** - Tesseract OCR ile görsel içindeki metinleri tarar  
+✅ **Çoklu Dil Desteği** - İngilizce, Türkçe, İspanyolca, Almanca ve daha fazlası  
+✅ **Paralel İşleme** - Çoklu thread desteğiyle hızlı tarama  
+✅ **Akıllı Tespit** - Kredi kartı, seed phrase, gift card tespiti  
+✅ **Otomatik Kayıt** - Bulunan görselleri `found/` klasörüne kaydeder  
+✅ **CSV Çıktı** - Detaylı sonuçları CSV formatında kaydeder  
+✅ **Zaman Damgası** - Her bulunan görsel için tarih/saat bilgisi  
+✅ **Benzersiz Dosya Adı** - Aynı isimli dosyalar için otomatik numaralandırma  
+
+---
+
+## 🚀 Kurulum
+
+### Windows
+
+#### 1️⃣ Python Kurulumu
+
+Python 3.8 veya üzeri sürümü indirin ve yükleyin:  
+👉 https://www.python.org/downloads/
+
+⚠️ **Önemli:** Kurulum sırasında "Add Python to PATH" seçeneğini işaretleyin!
+
+#### 2️⃣ Tesseract OCR Kurulumu
+
+Windows Installer'ı indirin:  
+👉 https://github.com/tesseract-ocr/tesseract/releases
+
+**Kurulum Adımları:**
+1. `tesseract-ocr-w64-setup-*.exe` dosyasını indirin
+2. Kurulumu başlatın (önerilen yol: `C:\Program Files\Tesseract-OCR\`)
+3. "Additional language data" kısmından dil paketlerini seçin (opsiyonel)
+4. Kurulumu tamamlayın
+
+#### 3️⃣ Python Kütüphanelerini Yükleyin
+
+Komut İstemi'ni (CMD) **yönetici olarak** açın ve şu komutları çalıştırın:
+
+```bash
 python -m pip install --upgrade pip
+pip install pytesseract pillow certifi
+```
 
-pip install --user certifi
+#### 4️⃣ Projeyi İndirin
 
-1. Tesseract'ı Yüklemek:
-Öncelikle Tesseract'ı bilgisayarınıza yüklemeniz gerekmektedir:
+```bash
+git clone https://github.com/cvv2com/cvv2net-card-photo-logging.git
+cd cvv2net-card-photo-logging
+```
 
-Tesseract'ı Yükleme:
+veya ZIP olarak indirip klasöre çıkarın.
 
-Tesseract İndir https://github.com/tesseract-ocr/tesseract
-Windows için Tesseract'ı indirip yükledikten sonra, tesseract.exe'nin yolunu belirlemeniz gerekecek.
-Python Kütüphanesini Yükleme:
+---
 
-1. Tesseract OCR Yükleme
-Windows için Tesseract OCR'yi yüklemek için aşağıdaki adımları takip edebilirsiniz:
+### Linux (Ubuntu/Debian)
 
-a) Tesseract'ı İndirme
-Tesseract OCR Windows Kurulum Sayfası adresine gidin ve en son Windows Installer'ı (örneğin tesseract-ocr-w32-setup-v5.0.0-alpha.20201203.exe) indirin.
-b) Yükleme
-İndirilen .exe dosyasını çalıştırarak Tesseract OCR'yi kurun. Kurulum sırasında dikkat etmeniz gereken noktalar:
-Tesseract'ı varsayılan olarak C:\Program Files\Tesseract-OCR klasörüne kurun.
-Tesseract'ın kurulu olduğu dizini not edin, çünkü Python kodunda bu dizini belirtmeniz gerekecek.
-c) Sisteme Tesseract Yolunu Ekleyin
-Tesseract'ı kurduktan sonra, Python'dan bu yolu kullanabilmesi için yolu belirtmeniz gerekecek.
+```bash
+# Sistem paketlerini güncelleyin
+sudo apt update && sudo apt upgrade -y
 
-Örneğin, eğer Tesseract şu dizine kuruluysa:
+# Python ve Tesseract'ı yükleyin
+sudo apt install python3 python3-pip tesseract-ocr tesseract-ocr-tur -y
 
-C:\Program Files\Tesseract-OCR\tesseract.exe
+# Python kütüphanelerini yükleyin
+pip3 install --user pytesseract pillow certifi
 
-Python kodunda, pytesseract kütüphanesini kullanmadan önce aşağıdaki satırı ekleyin:
+# Projeyi klonlayın
+git clone https://github.com/cvv2com/cvv2net-card-photo-logging.git
+cd cvv2net-card-photo-logging
 
-python
-Copy code
-import pytesseract
+# Çalıştırma izni verin
+chmod +x ccfinder.py
+```
 
-# Windows için Tesseract yolunu belirtin
+---
+
+### macOS
+
+```bash
+# Homebrew ile Tesseract yükleyin
+brew install tesseract
+
+# Python kütüphanelerini yükleyin
+pip3 install pytesseract pillow certifi
+
+# Projeyi klonlayın
+git clone https://github.com/cvv2com/cvv2net-card-photo-logging.git
+cd cvv2net-card-photo-logging
+```
+
+---
+
+## 🎯 Kullanım
+
+### Basit Kullanım
+
+Script'i çalıştırın:
+
+```bash
+python ccfinder.py
+```
+
+Program size 3 soru soracak:
+
+1. **📁 Taranacak klasör yolu** - Taramak istediğiniz klasörün tam yolu
+2. **💾 CSV dosya adı** - Sonuçların kaydedileceği dosya (boş bırakabilirsiniz)
+3. **🔢 Thread sayısı** - Paralel işlem sayısı (4-8 arası önerilir)
+
+### Örnek Kullanım
+
+```
+🔍 CVV2NET KART FOTOĞRAF TARAMA ARACI
+======================================================================
+
+📁 Taranacak klasör yolu: C:\Users\John\Pictures
+💾 CSV dosya adı (varsayılan: ccfinder_results_20260128_143022.csv): 
+🔢 Thread sayısı (önerilen: 4-8): 8
+
+======================================================================
+🚀 TARAMA BAŞLATILIYOR...
+📂 Hedef: C:\Users\John\Pictures
+💾 Çıktı: ccfinder_results_20260128_143022.csv
+⚡ Thread: 8
+======================================================================
+
+📊 Toplam 1523 görsel bulundu. Tarama başlıyor...
+
+⚪ [#1] Tarandı: photo001.jpg
+✅ [#2] BULUNDU: card_image.png → 3 etiket eşleşti
+⚪ [#3] Tarandı: vacation.jpg
+✅ [#4] BULUNDU: wallet_photo.jpg → 5 etiket eşleşti
+...
+
+======================================================================
+✅ TARAMA TAMAMLANDI!
+======================================================================
+🔍 Toplam bulunan: 12 görsel
+⏱️ Süre: 245.67 saniye
+💾 Sonuçlar: ccfinder_results_20260128_143022.csv
+📁 Görseller: C:\Users\John\Pictures\found
+======================================================================
+```
+
+---
+
+## 📊 Çıktı Formatı
+
+### CSV Dosyası
+
+| timestamp | original_path | saved_path | matched_tags | ocr_text |
+|-----------|---------------|------------|--------------|----------|
+| 2026-01-28 14:30:45 | C:\pics\card.jpg | C:\pics\found\card.jpg | Visa, Credit Card, CVV | 4532 1234 5678... |
+| 2026-01-28 14:30:47 | C:\pics\seed.png | C:\pics\found\seed.png | BIP39, 12 word, Mnemonic | breeze eternal... |
+
+### Klasör Yapısı
+
+```
+📁 Tarama Klasörü/
+├── 📷 görsel1.jpg
+├── 📷 görsel2.png
+├── 📷 görsel3.jpg
+├── 📂 found/
+│   ├── ✅ card_image.jpg      (bulunan kredi kartı görseli)
+│   ├── ✅ seed_phrase.png     (bulunan seed phrase)
+│   └── ✅ giftcard.jpg        (bulunan gift card)
+└── 📄 ccfinder_results_20260128.csv
+```
+
+---
+
+## 🎨 Özellikler ve Tespit Edilen İçerikler
+
+### 💳 Kredi/Banka Kartları
+
+- Visa, Mastercard, American Express, Discover
+- Kart numaraları
+- Son kullanma tarihleri
+- CVV/CVC kodları
+- Kart sahibi isimleri
+
+**Örnek Çıktı:**
+```csv
+C:\found\card.png, "Visa, Credit Card, CVV", "4050 7101 4196 9928 09/2027 CVV:209"
+```
+
+### 🔐 Kripto Wallet Seed Phrases
+
+- BIP39 12/24 kelime seed phrase'ler
+- Private key'ler
+- Mnemonic phrase'ler
+- Wallet recovery bilgileri
+
+**Örnek Çıktı:**
+```csv
+C:\found\seed.jpg, "BIP39, 12 word, Mnemonic", "breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli"
+```
+
+### 🎁 Gift Card'lar
+
+- Vanilla Gift Card
+- Prepaid kartlar
+- Bakiye bilgileri
+
+**Örnek Çıktı:**
+```csv
+C:\found\vanilla.png, "Vanilla, Gift Card, VanillaGift", "Visit VanillaGift.com Card Number: 4111..."
+```
+
+---
+
+## ⚙️ Gelişmiş Ayarlar
+
+### Yeni Etiket Ekleme
+
+`ccfinder.py` dosyasını açın ve `TAGS` listesine yeni anahtar kelimeler ekleyin:
+
+```python
+TAGS = [
+    "Yeni Anahtar Kelime",
+    "Başka Bir Terim",
+    # ... mevcut etiketler
+]
+```
+
+### OCR Dil Ayarları
+
+Türkçe veya diğer diller için OCR yapmak istiyorsanız:
+
+```python
+# Tek dil
+text = pytesseract.image_to_string(image, lang='tur')
+
+# Çoklu dil
+text = pytesseract.image_to_string(image, lang='eng+tur+fra')
+```
+
+### Desteklenen Görsel Formatları
+
+Script şu formatları destekler:
+- `.jpg` / `.jpeg`
+- `.png`
+- `.bmp`
+- `.gif`
+- `.tiff`
+- `.webp`
+
+Yeni format eklemek için:
+
+```python
+SUPPORTED_IMAGE_FORMATS = ('.jpg', '.png', '.bmp', '.svg', '.heic')
+```
+
+---
+
+## 🛠️ Sorun Giderme
+
+### ❌ "Tesseract bulunamadı" hatası
+
+**Windows:**
+```bash
+# PATH'e manuel ekleme
+setx PATH "%PATH%;C:\Program Files\Tesseract-OCR"
+```
+
+Veya `ccfinder.py` dosyasında manuel yol belirtin:
+```python
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-2. OCR Testi Yapma
-Kurulumları tamamladıktan sonra, basit bir OCR testi yapmak için aşağıdaki Python kodunu kullanabilirsiniz:
-
-python
-Copy code
-from PIL import Image
-import pytesseract
-
-# Tesseract yolunu belirtin
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
-# Test görseli (resmin yolunu belirtin)
-image_path = "test_image.png"  # Test için bir resim dosyasını belirleyin
-img = Image.open(image_path)
-
-# OCR işlemi
-text = pytesseract.image_to_string(img)
+```
 
-# Sonucu yazdır
-print("OCR Sonucu:")
-print(text)
-Bu kod, belirtilen resim dosyasındaki metni okur ve terminalde ekrana yazdırır.
+**Linux:**
+```bash
+sudo apt install tesseract-ocr
+```
 
-3. PATH Değişkenine Tesseract Ekleme (Opsiyonel)
-Eğer pytesseract'ı kullanırken herhangi bir sorunla karşılaşırsanız, Tesseract'ın kurulu olduğu dizini PATH ortam değişkenine eklemeyi deneyebilirsiniz.
+### ❌ PIL/Pillow hatası
 
-a) PATH'e Tesseract Yolu Eklemek
-Başlat Menüsüne sağ tıklayın ve Sistem → Gelişmiş sistem ayarları → Ortam Değişkenleri'ni seçin.
-Sistem değişkenleri kısmında Path'i bulun ve Düzenle'ye tıklayın.
-Yeni butonuna basarak şu yolu ekleyin:
-txt
-Copy code
-C:\Program Files\Tesseract-OCR
-b) Değişiklikleri Kaydetmek
-Tüm pencereyi Tamam diyerek kapatın.
-Bu adım, tesseract komutunun her yerden çalışmasını sağlar.
+```bash
+pip uninstall pillow
+pip install pillow --upgrade
+```
 
+### ❌ SSL Sertifika hatası
 
-Python kütüphaneleri (pytesseract, pillow, certifi) başarıyla yüklendi.
-Tesseract OCR yazılımını indirin, yükleyin ve Python'da doğru yolda kullanıldığından emin olun.
-Tesseract'ın yolunu belirtin ve OCR testi yaparak her şeyin düzgün çalıştığından emin olun.
+```bash
+pip install --upgrade certifi
+```
 
-The process_image function performs each image processing:
-OCR analysis is performed.
-If the tags match, the image is saved in the found folder.
-The OCR result and matching tags are instantly written to the CSV file.
-Writing Each Processing Results to the CSV File:
+### ⏱️ Tarama çok yavaş
 
-***********************
+- Thread sayısını artırın (8-16 arası deneyin)
+- Yüksek çözünürlüklü görselleri ön işlemeye tabi tutun
+- SSD kullanın (HDD yerine)
 
-When each image is processed, it is instantly written to the CSV file. This means that previous operations are not lost, even if there are any errors during processing.
-Regular Saving of the CSV File and Images:
+---
 
-Images are saved in the found folder, and their file names are saved with their original file names.
-The path, tags, and OCR output of each processed image are saved in the CSV file.
-Advantages of This Updated Script:
-No data loss: If the script closes before the process is complete, the last processed data is not lost because it is instantly written to the CSV upon completion of each process.
-Instant results are obtained during processing: As the image is processed, the results are immediately recorded and stored in the found folder, as well as in the files.
-This script makes the script more reliable at every stage.
+## 🔒 Güvenlik ve Yasal Uyarılar
 
-Main changes:
-File writing is now continuous: After each image is processed, the process_image function immediately writes the result to a CSV file.
-CSV writing has been moved to the scan_images function: As images are processed, the results for each job are immediately written.
-This way, as the script processes all images, the results are written to the CSV file, and even if the script is interrupted, the data processed up to that point will not be lost.
+⚠️ **ÖNEMLİ NOTLAR:**
 
-[??] Scanning started: C:\
-[??] OCR in progress: C:\path\to\image1.jpg
-[??] OCR in progress: C:\path\to\image2.png
-[?] 10 matches found. Results written ? ocr_output.csv
+1. **Yasal Kullanım** - Bu araç yalnızca kendi dosyalarınızı taramak için kullanılmalıdır
+2. **Veri Güvenliği** - CSV dosyası hassas bilgiler içerebilir, güvenli bir yerde saklayın
+3. **Şifreleme** - Önemli verileri şifreleyerek saklayın
+4. **İzin** - Başkasının dosyalarını izinsiz taramayın
 
+### CSV Dosyasını Şifreleme
 
-With the new functionality you added to your code, you OCR the images and save them in the found folder. This is a great step! You've ensured that the images are saved under their respective directories.
+**7-Zip ile:**
+```bash
+7z a -p -mhe=on sonuclar.7z ccfinder_results.csv
+```
 
-Code Summary:
-The process_image() function OCRs each image and, if it finds a tag match, saves the image in the found folder.
-The scan_images() function processes all the images in the given directory and returns the results as a list.
-The save_to_csv() function saves the OCR results to a CSV file.
-Additional Notes:
-A "found" folder is automatically created (if it doesn't exist), and images are saved in this directory. This prevents any images from being lost or corrupted.
+**GPG ile:**
+```bash
+gpg -c ccfinder_results.csv
+```
 
-Within the process_image() function, if a text match is found, the image is saved along with its file name.
+---
 
-Potential Improvements:
-File Name Conflicts: If multiple images have the same name, conflicts may occur during saving. Adding a timestamp to the file name can be helpful to prevent this.
+## 📝 Değişiklik Günlüğü (Changelog)
 
-For example:
+### v2.0 (2026-01-28)
 
-python
-Copy code
-from datetime import datetime
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-save_path = os.path.join(found_folder, f"{timestamp}_{base_name}")
-Less Complex Error Messages: If you provide more descriptive error messages during the OCR process, you can more easily resolve issues encountered by users.
+✨ **Yeni Özellikler:**
+- Otomatik Tesseract yolu tespiti (Windows)
+- Benzersiz dosya adı oluşturma (aynı isimli dosyalar için)
+- İlerleme sayacı ve renkli konsol çıktısı
+- Her bulunan görsele zaman damgası ekleme
+- Gelişmiş hata yönetimi ve kullanıcı dostu mesajlar
+- Türkçe kullanıcı arayüzü
 
-Performance Improvements: You can dynamically adjust the number of threads using the ThreadPoolExecutor in the scan_images() function. This allows you to increase the number of threads when more processing power is needed.
+🔧 **İyileştirmeler:**
+- BIP39 seed phrase tespiti eklendi
+- Gift card tespiti eklendi
+- Çoklu dil desteği genişletildi
+- Thread yönetimi optimize edildi
+- 'found' klasörü otomatik atlanır (tekrar taramayı önler)
 
-Usage:
-When running the code, you select the folder you want to scan.
-You specify a CSV file name to save the results.
-Images are saved under /found, and information about matching tags is written to CSV.
-Output Example:
-plaintext
-Copy code
-[??] Scanning started: C:\
-[??] OCR is running: C:\path\to\image1.jpg
-[??] OCR is running: C:\path\to\image2.png
-[?] 10 matches found. Results are written to ? ocr_output.csv
+### v1.0 (Önceki Sürüm)
 
+- İlk genel sürüm
 
-<img width="1920" height="1080" alt="ccphotofinder" src="https://github.com/user-attachments/assets/ca8ec933-7191-46b9-9747-378d4afa213d" />
+---
 
-CSV Kaydı ve Güvenlik: OCR çıktısı içerisinde hassas bilgiler (kart numaraları, son kullanma tarihleri, vb.) varsa, bu verilerin güvenli bir şekilde saklanması ve işlenmesi gerekir. Eğer bir proje için bu tür verileri saklıyorsanız, belirli güvenlik protokollerine dikkat etmeniz gerekmektedir.
+## 📄 Lisans
 
-Veri Formatı: Kayıt edilen veri şu şekilde görünüyor:
+Bu proje **GNU General Public License v3.0** ile lisanslanmıştır.
 
-C:\found\20316302.png,"CC, Visa, VISA",aa yw  010010 4050710141969928 |09|2027|209  4050710141969928 |09|2027|209 Country: AR  Brand: visa Type: credit  Check type: pre-authorization Status: succeeded  $ Your balance 196 check
+Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
+---
 
-cvv2.net card-finder-extractor
-https://github.com/cvv2com/card-finder-extractor
+## 🤝 Katkıda Bulunma
 
+Katkılarınızı bekliyoruz! Şu adımları izleyin:
 
+1. Projeyi fork edin
+2. Yeni bir branch oluşturun (`git checkout -b feature/yeniOzellik`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik eklendi'`)
+4. Branch'inizi push edin (`git push origin feature/yeniOzellik`)
+5. Pull Request açın
 
+---
 
+## 📧 İletişim ve Bağlantılar
 
+- **GitHub Profile:** [@cvv2com](https://github.com/cvv2com)
+- **Bu Proje:** [cvv2net-card-photo-logging](https://github.com/cvv2com/cvv2net-card-photo-logging)
+- **İlgili Proje:** [card-finder-extractor](https://github.com/cvv2com/card-finder-extractor)
 
+---
 
+## 💝 Teşekkürler
 
+Bu araç **100% ÜCRETSİZ** ve açık kaynaklıdır!
 
+Projeyi beğendiyseniz ⭐ vermeyi unutmayın!
 
+---
 
-BIP39 Seed can find 12 phrases, which makes me a little sad because the life of the wallet owner can be ruined.
+## 🎉 İyi Şanslar!
 
-
-
-"  breeze eternal fiction  junior ethics lumber  chaos squirrel code jar snack broccoli  deriv"
-
-
-
-C:\found\02c143a0a17d9fc654a5745e351f1005.jpg,CC,12 word Mnemonic  breeze eternal fiction  junior ethics lumber  chaos squirrel code jar snack broccoli  derive Master Private Key  Master Private Key  xprv9s21ZrQH143K4LCv8  FoJWzDPFsMPWXHtzXxzb GVqTYwh4kqCgchKJDMiL Cbv88He5KEQt8LpPcAoc8 8CdxY5MzHm9K4DBRhbA  LB7dcEfPGyw  add Counter generate key generate address  +1  +2  +3  +1  +2  +3  — first privatekey —? first Bitcoin address  ————_>. second private key —® second Bitcoin address  —_ third private key — third Bitcoin address  > L5Y7u....HrfPV7d —— 16UZr.....JQeX —  Llojitgh...Fj|Af¥’m — 1P3D.....BwVG  ——  L5626r....EX3rEZ ——P 1ByJ kgS6  
-
-
-
-
-
-
-
-
-
-It can automatically find Vanilla Gift cards.
-
-Vanilla. gift Enjoy Online Spending Power And Safety  Visit VanillaGift.com for more information about your Vanilla  Gift Virtual Account. Remember, while you can print an image Vanill a  of your Vanilla Gift Virtual Account "card", you may not use  your Virtual account at physical merchant locations. Ce rat lal cout ». The Virtual Account may only be used for online, telephone, and Wey  mail order purchases. 4118-1005 0985 7263 ‘Virtual Account Number 4118100509857263  eres 10/2030  \ DEBIT Expiration Date 10 / 2030 A GIFT. FOR YOU j \AHSA  VALID ONLY IN THESE Cvv 499  
-
-You can easily find your Cc Cvv card information.
-
-
-
-
-
-
-
-
-
-C:\found\20316302.png,"CC, Visa, VISA",aa yw  010010 4050710141969928 |09|2027|209  4050710141969928 |09|2027|209 Country: AR  Brand: visa Type: 
-
-credit  Check type: pre-authorization Status: succeeded  $ Your balance 196 check
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-After finding all the images by searching, it saves them all.
-
-​
-
-​
-
-
-
-
-
-
-
-
-
-
-
-AND MOST IMPORTANTLY, IT IS 100% FREE FOR US. 
-
-
-
-GOOD LUCK!
-
-
-
+**GOOD LUCK! 🍀**
