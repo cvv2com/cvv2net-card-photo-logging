@@ -185,9 +185,29 @@ TAGS = [
     "phpmyadmin", "ssh", "admin",
     
     # === FILE EXTENSIONS & DATABASE ===
-    ".sql", "sql", ".dat", "db", "database",
-    ".mdf", ".ldf", ".pst", ".ost", ".mbx", ".mbox",
-    "combos", "exploits", "dorks",
+    # Document Files
+    ".txt", ".log", ".doc", ".docx", ".pdf", ".rtf",
+    
+    # Data Files
+    ".json", ".xml", ".csv", ".dat", ".db", ".sqlite",
+    
+    # Database Files
+    ".sql", ".mdf", ".ldf", ".bak",
+    
+    # Email & Communication
+    ".pst", ".ost", ".mbx", ".mbox", ".eml",
+    
+    # Archive Files
+    ".zip", ".rar", ".7z", ".tar", ".gz",
+    
+    # Image Files (in filenames)
+    ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tiff",
+    
+    # Crypto/Wallet Files
+    ".keystore", ".wallet", ".key",
+    
+    # Other
+    "combos", "exploits", "dorks", "sql", "database", "log-in",
     
     # === MESSAGING & EMAIL ===
     "E-mail", "e-mail", "Gmail",
@@ -208,7 +228,7 @@ TAGS = [
     "import using secret recovery phrase"
 ]
 
-# Supported image formats
+# Supported image formats for scanning
 SUPPORTED_IMAGE_FORMATS = ('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.tiff', '.webp')
 
 # ============================================================================
@@ -265,7 +285,7 @@ def process_image(image_path, found_folder, output_csv_writer, processed_count):
                 'timestamp': timestamp,
                 'original_path': image_path,
                 'saved_path': save_path,
-                'matched_tags': ", ".join(matched_tags[:15]),  # Limit to first 15 tags
+                'matched_tags': ", ".join(matched_tags[:15]),
                 'tag_count': len(matched_tags),
                 'ocr_text': format_ocr_text(text)
             }
