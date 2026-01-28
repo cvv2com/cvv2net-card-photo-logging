@@ -1,4 +1,4 @@
-# 🔍 CVV2NET Kart Fotoğraf Tarama Aracı
+# 🔍 CVV2COM Kart Fotoğraf Tarama Aracı
 
 Bu araç, bilgisayarınızdaki veya herhangi bir klasördeki görselleri tarayarak kredi kartı, banka kartı, seed phrase'ler ve benzeri hassas bilgiler içeren görselleri otomatik olarak tespit eder ve kaydeder.
 
