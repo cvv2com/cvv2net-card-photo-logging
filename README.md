@@ -1,4 +1,4 @@
-# 🔍 CVV2NET Card & Crypto Wallet Photo Scanner
+# 🔍 CVV2COM Card & Crypto Wallet Photo Scanner
 
 An intelligent OCR-based tool that automatically detects credit cards, cryptocurrency wallet seed phrases, and other sensitive information in images.
 
