@@ -449,6 +449,31 @@ Contributions are welcome! Follow these steps:
 
 ---
 
+## 💰 Advertising & Sponsorship
+
+Interested in advertising your project or sponsoring this tool?
+
+We offer various **paid advertising and sponsorship opportunities** including:
+- 📌 Logo placement in README and documentation
+- 🔗 Featured links and mentions
+- 📢 Social media promotion
+- 🤝 Integration and co-marketing opportunities
+
+We also have **FREE promotion options** through:
+- Contributing code and features
+- Creating tutorials and content
+- Community engagement
+- Cross-promotion partnerships
+
+**📋 See [ADVERTISING.md](ADVERTISING.md) for full details and pricing**
+
+**💬 Contact for inquiries:**
+- Telegram: https://t.me/Ol00l0
+- GitHub: @cvv2com
+- Forum: https://bhf.pro/threads/629649/page-109#post-7489361
+
+---
+
 ## 📧 Contact & Links
 
 GitHub Profile: @cvv2com
