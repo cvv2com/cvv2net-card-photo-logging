@@ -1,83 +1,84 @@
-# 🔍 CVV2COM Kart Fotoğraf Tarama Aracı
+# 🔍 CVV2NET Card & Crypto Wallet Photo Scanner
 
-Bu araç, bilgisayarınızdaki veya herhangi bir klasördeki görselleri tarayarak kredi kartı, banka kartı, seed phrase'ler ve benzeri hassas bilgiler içeren görselleri otomatik olarak tespit eder ve kaydeder.
+An intelligent OCR-based tool that automatically detects credit cards, cryptocurrency wallet seed phrases, and other sensitive information in images.
 
-![ccphotofinder](https://github.com/user-attachments/assets/ca8ec933-7191-46b9-9747-378d4afa213d)
-
----
-
-## 📋 Özellikler
-
-✅ **Otomatik OCR Analizi** - Tesseract OCR ile görsel içindeki metinleri tarar  
-✅ **Çoklu Dil Desteği** - İngilizce, Türkçe, İspanyolca, Almanca ve daha fazlası  
-✅ **Paralel İşleme** - Çoklu thread desteğiyle hızlı tarama  
-✅ **Akıllı Tespit** - Kredi kartı, seed phrase, gift card tespiti  
-✅ **Otomatik Kayıt** - Bulunan görselleri `found/` klasörüne kaydeder  
-✅ **CSV Çıktı** - Detaylı sonuçları CSV formatında kaydeder  
-✅ **Zaman Damgası** - Her bulunan görsel için tarih/saat bilgisi  
-✅ **Benzersiz Dosya Adı** - Aynı isimli dosyalar için otomatik numaralandırma  
+![CVV2NET Scanner](https://github.com/user-attachments/assets/ca8ec933-7191-46b9-9747-378d4afa213d)
 
 ---
 
-## 🚀 Kurulum
+## 📋 Features
+
+✅ **Automatic OCR Analysis** - Scans text in images using Tesseract OCR  
+✅ **Multi-language Support** - English, Turkish, Spanish, German, Russian, Chinese, Japanese, Korean, and more  
+✅ **Parallel Processing** - Fast scanning with multi-threading support  
+✅ **Smart Detection** - Identifies credit cards, seed phrases, gift cards, and more  
+✅ **Auto-save** - Saves matched images to `found/` folder  
+✅ **CSV Export** - Detailed results in CSV format  
+✅ **Timestamp Logging** - Date/time stamp for each detected image  
+✅ **Unique Filenames** - Automatic numbering for duplicate filenames  
+✅ **Extensible Tags** - Load custom tag lists from external file  
+
+---
+
+## 🚀 Installation
 
 ### Windows
 
-#### 1️⃣ Python Kurulumu
+#### 1️⃣ Install Python
 
-Python 3.8 veya üzeri sürümü indirin ve yükleyin:  
+Download and install Python 3.8 or higher:  
 👉 https://www.python.org/downloads/
 
-⚠️ **Önemli:** Kurulum sırasında "Add Python to PATH" seçeneğini işaretleyin!
+⚠️ **Important:** Check "Add Python to PATH" during installation!
 
-#### 2️⃣ Tesseract OCR Kurulumu
+#### 2️⃣ Install Tesseract OCR
 
-Windows Installer'ı indirin:  
+Download the Windows Installer:  
 👉 https://github.com/tesseract-ocr/tesseract/releases
 
-**Kurulum Adımları:**
-1. `tesseract-ocr-w64-setup-*.exe` dosyasını indirin
-2. Kurulumu başlatın (önerilen yol: `C:\Program Files\Tesseract-OCR\`)
-3. "Additional language data" kısmından dil paketlerini seçin (opsiyonel)
-4. Kurulumu tamamlayın
+**Installation Steps:**
+1. Download `tesseract-ocr-w64-setup-*.exe`
+2. Run the installer (recommended path: `C:\Program Files\Tesseract-OCR\`)
+3. Select language data packs (optional)
+4. Complete installation
 
-#### 3️⃣ Python Kütüphanelerini Yükleyin
+#### 3️⃣ Install Python Libraries
 
-Komut İstemi'ni (CMD) **yönetici olarak** açın ve şu komutları çalıştırın:
+Open Command Prompt as **Administrator** and run:
 
 ```bash
 python -m pip install --upgrade pip
 pip install pytesseract pillow certifi
 ```
 
-#### 4️⃣ Projeyi İndirin
+#### 4️⃣ Download the Project
 
 ```bash
 git clone https://github.com/cvv2com/cvv2net-card-photo-logging.git
 cd cvv2net-card-photo-logging
 ```
 
-veya ZIP olarak indirip klasöre çıkarın.
+Or download as ZIP and extract.
 
 ---
 
 ### Linux (Ubuntu/Debian)
 
 ```bash
-# Sistem paketlerini güncelleyin
+# Update system packages
 sudo apt update && sudo apt upgrade -y
 
-# Python ve Tesseract'ı yükleyin
+# Install Python and Tesseract
 sudo apt install python3 python3-pip tesseract-ocr tesseract-ocr-tur -y
 
-# Python kütüphanelerini yükleyin
+# Install Python libraries
 pip3 install --user pytesseract pillow certifi
 
-# Projeyi klonlayın
+# Clone the project
 git clone https://github.com/cvv2com/cvv2net-card-photo-logging.git
 cd cvv2net-card-photo-logging
 
-# Çalıştırma izni verin
+# Make executable
 chmod +x ccfinder.py
 ```
 
@@ -86,166 +87,176 @@ chmod +x ccfinder.py
 ### macOS
 
 ```bash
-# Homebrew ile Tesseract yükleyin
+# Install Tesseract via Homebrew
 brew install tesseract
 
-# Python kütüphanelerini yükleyin
+# Install Python libraries
 pip3 install pytesseract pillow certifi
 
-# Projeyi klonlayın
+# Clone the project
 git clone https://github.com/cvv2com/cvv2net-card-photo-logging.git
 cd cvv2net-card-photo-logging
 ```
 
 ---
 
-## 🎯 Kullanım
+## 🎯 Usage
 
-### Basit Kullanım
+### Basic Usage
 
-Script'i çalıştırın:
+Run the script:
 
 ```bash
 python ccfinder.py
 ```
 
-Program size 3 soru soracak:
+The program will ask 3 questions:
 
-1. **📁 Taranacak klasör yolu** - Taramak istediğiniz klasörün tam yolu
-2. **💾 CSV dosya adı** - Sonuçların kaydedileceği dosya (boş bırakabilirsiniz)
-3. **🔢 Thread sayısı** - Paralel işlem sayısı (4-8 arası önerilir)
+1. **📁 Folder path to scan** - Full path to the folder you want to scan
+2. **💾 CSV filename** - Output filename (press Enter for auto-generated name)
+3. **🔢 Thread count** - Number of parallel threads (4-8 recommended)
 
-### Örnek Kullanım
+### Example Usage
 
 ```
-🔍 CVV2NET KART FOTOĞRAF TARAMA ARACI
+======================================================================
+🔍 CVV2NET CARD & CRYPTO WALLET PHOTO SCANNER
+======================================================================
+This tool detects credit cards, seed phrases, and sensitive info in images.
+📌 Loaded tags: 247
+----------------------------------------------------------------------
+
+📁 Folder path to scan: C:\Users\John\Pictures
+💾 CSV filename (default: ccfinder_results_20260128_043022.csv): 
+🔢 Thread count (recommended: 4-8): 8
+
+======================================================================
+🚀 STARTING SCAN...
+📂 Target: C:\Users\John\Pictures
+💾 Output: ccfinder_results_20260128_043022.csv
+⚡ Threads: 8
 ======================================================================
 
-📁 Taranacak klasör yolu: C:\Users\John\Pictures
-💾 CSV dosya adı (varsayılan: ccfinder_results_20260128_143022.csv): 
-🔢 Thread sayısı (önerilen: 4-8): 8
+📊 Total 1523 images found. Starting scan...
 
-======================================================================
-🚀 TARAMA BAŞLATILIYOR...
-📂 Hedef: C:\Users\John\Pictures
-💾 Çıktı: ccfinder_results_20260128_143022.csv
-⚡ Thread: 8
-======================================================================
-
-📊 Toplam 1523 görsel bulundu. Tarama başlıyor...
-
-⚪ [#1] Tarandı: photo001.jpg
-✅ [#2] BULUNDU: card_image.png → 3 etiket eşleşti
-⚪ [#3] Tarandı: vacation.jpg
-✅ [#4] BULUNDU: wallet_photo.jpg → 5 etiket eşleşti
+⚪ [#1] Scanned: photo001.jpg
+✅ [#2] FOUND: card_visa.png → 3 tag(s) matched
+⚪ [#3] Scanned: family.jpg
+✅ [#4] FOUND: seed_wallet.jpg → 5 tag(s) matched
 ...
 
 ======================================================================
-✅ TARAMA TAMAMLANDI!
+✅ SCAN COMPLETED!
 ======================================================================
-🔍 Toplam bulunan: 12 görsel
-⏱️ Süre: 245.67 saniye
-💾 Sonuçlar: ccfinder_results_20260128_143022.csv
-📁 Görseller: C:\Users\John\Pictures\found
+🔍 Total found: 12 image(s)
+⏱️ Duration: 87.34 seconds
+💾 Results: ccfinder_results_20260128_043022.csv
+📁 Images: C:\Users\John\Pictures\found
 ======================================================================
 ```
 
 ---
 
-## 📊 Çıktı Formatı
+## 📊 Output Format
 
-### CSV Dosyası
+### CSV File Structure
 
 | timestamp | original_path | saved_path | matched_tags | ocr_text |
 |-----------|---------------|------------|--------------|----------|
-| 2026-01-28 14:30:45 | C:\pics\card.jpg | C:\pics\found\card.jpg | Visa, Credit Card, CVV | 4532 1234 5678... |
-| 2026-01-28 14:30:47 | C:\pics\seed.png | C:\pics\found\seed.png | BIP39, 12 word, Mnemonic | breeze eternal... |
+| 2026-01-28 04:30:45 | C:\pics\card.jpg | C:\pics\found\card.jpg | Visa, Credit Card, CVV | 4532 1234 5678... |
+| 2026-01-28 04:30:47 | C:\pics\seed.png | C:\pics\found\seed.png | BIP39, 12 word, Mnemonic | breeze eternal... |
 
-### Klasör Yapısı
+### Folder Structure
 
 ```
-📁 Tarama Klasörü/
-├── 📷 görsel1.jpg
-├── 📷 görsel2.png
-├── 📷 görsel3.jpg
+📁 Scan Folder/
+├── 📷 image1.jpg
+├── 📷 image2.png
+├── 📷 image3.jpg
 ├── 📂 found/
-│   ├── ✅ card_image.jpg      (bulunan kredi kartı görseli)
-│   ├── ✅ seed_phrase.png     (bulunan seed phrase)
-│   └── ✅ giftcard.jpg        (bulunan gift card)
+│   ├── ✅ card_image.jpg      (detected credit card)
+│   ├── ✅ seed_phrase.png     (detected seed phrase)
+│   └── ✅ giftcard.jpg        (detected gift card)
 └── 📄 ccfinder_results_20260128.csv
 ```
 
 ---
 
-## 🎨 Özellikler ve Tespit Edilen İçerikler
+## 🎨 Detection Examples
 
-### 💳 Kredi/Banka Kartları
+### 💳 Credit/Debit Cards
 
 - Visa, Mastercard, American Express, Discover
-- Kart numaraları
-- Son kullanma tarihleri
-- CVV/CVC kodları
-- Kart sahibi isimleri
+- Card numbers
+- Expiration dates
+- CVV/CVC codes
+- Cardholder names
 
-**Örnek Çıktı:**
+**Example Output:**
 ```csv
 C:\found\card.png, "Visa, Credit Card, CVV", "4050 7101 4196 9928 09/2027 CVV:209"
 ```
 
-### 🔐 Kripto Wallet Seed Phrases
+### 🔐 Crypto Wallet Seed Phrases
 
-- BIP39 12/24 kelime seed phrase'ler
-- Private key'ler
-- Mnemonic phrase'ler
-- Wallet recovery bilgileri
+- BIP39 12/24-word seed phrases
+- Private keys
+- Mnemonic phrases
+- Wallet recovery info
 
-**Örnek Çıktı:**
+**Example Output:**
 ```csv
 C:\found\seed.jpg, "BIP39, 12 word, Mnemonic", "breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli"
 ```
 
-### 🎁 Gift Card'lar
+### 🎁 Gift Cards
 
 - Vanilla Gift Card
-- Prepaid kartlar
-- Bakiye bilgileri
+- Prepaid cards
+- Balance info
 
-**Örnek Çıktı:**
+**Example Output:**
 ```csv
 C:\found\vanilla.png, "Vanilla, Gift Card, VanillaGift", "Visit VanillaGift.com Card Number: 4111..."
 ```
 
 ---
 
-## ⚙️ Gelişmiş Ayarlar
+## ⚙️ Advanced Configuration
 
-### Yeni Etiket Ekleme
+### Adding New Tags
 
-`ccfinder.py` dosyasını açın ve `TAGS` listesine yeni anahtar kelimeler ekleyin:
+Open `ccfinder.py` and add keywords to the `TAGS` list:
 
 ```python
 TAGS = [
-    "Yeni Anahtar Kelime",
-    "Başka Bir Terim",
-    # ... mevcut etiketler
+    "New Keyword",
+    "Another Search Term",
+    # ... existing tags
 ]
 ```
 
-### OCR Dil Ayarları
+Or edit `tags.txt` file:
 
-Türkçe veya diğer diller için OCR yapmak istiyorsanız:
+```txt
+new keyword,another term,custom phrase
+```
+
+### OCR Language Settings
+
+For Turkish or other languages:
 
 ```python
-# Tek dil
+# Single language
 text = pytesseract.image_to_string(image, lang='tur')
 
-# Çoklu dil
+# Multiple languages
 text = pytesseract.image_to_string(image, lang='eng+tur+fra')
 ```
 
-### Desteklenen Görsel Formatları
+### Supported Image Formats
 
-Script şu formatları destekler:
+The script supports:
 - `.jpg` / `.jpeg`
 - `.png`
 - `.bmp`
@@ -253,7 +264,7 @@ Script şu formatları destekler:
 - `.tiff`
 - `.webp`
 
-Yeni format eklemek için:
+To add new formats:
 
 ```python
 SUPPORTED_IMAGE_FORMATS = ('.jpg', '.png', '.bmp', '.svg', '.heic')
@@ -261,17 +272,17 @@ SUPPORTED_IMAGE_FORMATS = ('.jpg', '.png', '.bmp', '.svg', '.heic')
 
 ---
 
-## 🛠️ Sorun Giderme
+## 🛠️ Troubleshooting
 
-### ❌ "Tesseract bulunamadı" hatası
+### ❌ "Tesseract not found" error
 
 **Windows:**
 ```bash
-# PATH'e manuel ekleme
+# Add to PATH manually
 setx PATH "%PATH%;C:\Program Files\Tesseract-OCR"
 ```
 
-Veya `ccfinder.py` dosyasında manuel yol belirtin:
+Or specify path in `ccfinder.py`:
 ```python
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 ```
@@ -281,92 +292,93 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 sudo apt install tesseract-ocr
 ```
 
-### ❌ PIL/Pillow hatası
+### ❌ PIL/Pillow error
 
 ```bash
 pip uninstall pillow
 pip install pillow --upgrade
 ```
 
-### ❌ SSL Sertifika hatası
+### ❌ SSL certificate error
 
 ```bash
 pip install --upgrade certifi
 ```
 
-### ⏱️ Tarama çok yavaş
+### ⏱️ Slow scanning
 
-- Thread sayısını artırın (8-16 arası deneyin)
-- Yüksek çözünürlüklü görselleri ön işlemeye tabi tutun
-- SSD kullanın (HDD yerine)
+- Increase thread count (8-16)
+- Use SSD instead of HDD
+- Preprocess high-resolution images
 
 ---
 
-## 🔒 Güvenlik ve Yasal Uyarılar
+## 🔒 Security & Legal Warnings
 
-⚠️ **ÖNEMLİ NOTLAR:**
+⚠️ **IMPORTANT NOTES:**
 
-1. **Yasal Kullanım** - Bu araç yalnızca kendi dosyalarınızı taramak için kullanılmalıdır
-2. **Veri Güvenliği** - CSV dosyası hassas bilgiler içerebilir, güvenli bir yerde saklayın
-3. **Şifreleme** - Önemli verileri şifreleyerek saklayın
-4. **İzin** - Başkasının dosyalarını izinsiz taramayın
+1. **Legal Use** - This tool is for scanning YOUR OWN files only
+2. **Data Security** - CSV files may contain sensitive info - store securely
+3. **Encryption** - Encrypt important data
+4. **Permission** - Do NOT scan others' files without authorization
 
-### CSV Dosyasını Şifreleme
+### Encrypting CSV Files
 
-**7-Zip ile:**
+**Using 7-Zip:**
 ```bash
-7z a -p -mhe=on sonuclar.7z ccfinder_results.csv
+7z a -p -mhe=on results.7z ccfinder_results.csv
 ```
 
-**GPG ile:**
+**Using GPG:**
 ```bash
 gpg -c ccfinder_results.csv
 ```
 
 ---
 
-## 📝 Değişiklik Günlüğü (Changelog)
+## 📝 Changelog
 
 ### v2.0 (2026-01-28)
 
-✨ **Yeni Özellikler:**
-- Otomatik Tesseract yolu tespiti (Windows)
-- Benzersiz dosya adı oluşturma (aynı isimli dosyalar için)
-- İlerleme sayacı ve renkli konsol çıktısı
-- Her bulunan görsele zaman damgası ekleme
-- Gelişmiş hata yönetimi ve kullanıcı dostu mesajlar
-- Türkçe kullanıcı arayüzü
+✨ **New Features:**
+- Automatic Tesseract path detection (Windows)
+- Unique filename generation (duplicate handling)
+- Progress counter with colored console output
+- Timestamp for each detected image
+- Enhanced error handling and user-friendly messages
+- English UI and documentation
 
-🔧 **İyileştirmeler:**
-- BIP39 seed phrase tespiti eklendi
-- Gift card tespiti eklendi
-- Çoklu dil desteği genişletildi
-- Thread yönetimi optimize edildi
-- 'found' klasörü otomatik atlanır (tekrar taramayı önler)
+🔧 **Improvements:**
+- BIP39 seed phrase detection
+- Gift card detection
+- Extended multi-language support
+- Optimized thread management
+- 'found' folder auto-skip (prevents re-scanning)
+- External tag file support (`tags.txt`)
 
-### v1.0 (Önceki Sürüm)
+### v1.0 (Previous)
 
-- İlk genel sürüm
-
----
-
-## 📄 Lisans
-
-Bu proje **GNU General Public License v3.0** ile lisanslanmıştır.
-
-Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+- Initial release
 
 ---
 
-## 🤝 Katkıda Bulunma
+## 📄 License
 
-Katkılarınızı bekliyoruz! Şu adımları izleyin:
+This project is licensed under **GNU General Public License v3.0**.
 
-1. Projeyi fork edin
-2. Yeni bir branch oluşturun (`git checkout -b feature/yeniOzellik`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik eklendi'`)
-4. Branch'inizi push edin (`git push origin feature/yeniOzellik`)
-5. Pull Request açın
+See [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Follow these steps:
+
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/NewFeature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to branch (`git push origin feature/NewFeature`)
+5. Open a Pull Request
 
 ---
 
@@ -380,14 +392,14 @@ Katkılarınızı bekliyoruz! Şu adımları izleyin:
 
 ---
 
-## 💝 Teşekkürler
+## 💝 Acknowledgments
 
-Bu araç **100% ÜCRETSİZ** ve açık kaynaklıdır!
+This tool is **100% FREE** and open source!
 
-Projeyi beğendiyseniz ⭐ vermeyi unutmayın!
+If you like the project, don't forget to give it a ⭐!
 
 ---
 
-## 🎉 İyi Şanslar!
+## 🎉 Good Luck!
 
 **GOOD LUCK! 🍀**
